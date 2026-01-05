@@ -39,7 +39,7 @@ function ENT:PlayerUse(pl)
 		self.Removed = true
 		self:Remove()
 
-		IGS.Notify(pl, "Предмет помещен в /donate инвентарь")
+		IGS.Notify(pl, "Предмет помещен в !donate инвентарь")
 
 		-- вставлять новый ID не совсем корректно
 		-- Думаю, надо кешировать тот ИД, что был при покупке

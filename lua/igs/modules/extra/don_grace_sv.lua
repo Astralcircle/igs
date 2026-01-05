@@ -9,7 +9,7 @@ IGS.C.TopDon_Echo = true
 IGS.C.TopDon_Periodicity = "%u" -- %m
 
 IGS.C.TopDon_TextRecord   = "$nick побил рекорд доната в этом месяце, пополнив счет на $sum руб.\nПредыдущий рекорд установил $nick_prev, пополнив счет на $sum_prev руб"
-IGS.C.TopDon_TextFirstDon = "$nick стал первым, кто задонатил в этом месяце. $nick умничка. Будь как $nick - /donate" -- доступен шаблон $sum
+IGS.C.TopDon_TextFirstDon = "$nick стал первым, кто задонатил в этом месяце. $nick умничка. Будь как $nick - !donate" -- доступен шаблон $sum
 
 
 
