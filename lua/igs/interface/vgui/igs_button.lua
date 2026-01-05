@@ -21,10 +21,10 @@ function PANEL:IsActive()
 end
 
 function PANEL:Paint(w,h)
-	classicbox.rndx.Draw(4, 0, 0, w, h, IGS.col.PASSIVE_SELECTIONS)
+	draw.RoundedBox(4,0,0,w,h,IGS.col.HIGHLIGHTING) -- outline
 
 	if not self.active then
-		classicbox.rndx.DrawOutlined(4, 0, 0, w, h, IGS.col.HIGHLIGHTING, 1) -- bg TODO изменить, сделав как-то прозрачным
+		draw.RoundedBox(4,1,1,w - 2,h - 2,IGS.col.PASSIVE_SELECTIONS) -- bg TODO изменить, сделав как-то прозрачным
 	end
 end
 

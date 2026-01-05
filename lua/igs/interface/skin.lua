@@ -100,8 +100,8 @@ end
 
 -- https://img.qweqwe.ovh/1486557676799.png
 IGS.S.RoundedPanel = function(s,w,h)
-	classicbox.rndx.Draw(3, 0, 0, w, h, IGS.col.INNER_SELECTIONS)
-	classicbox.rndx.DrawOutlined(3, 0, 0, w, h, IGS.col.HARD_LINE, 1)
+	draw.RoundedBox(3,0,0,w,h,        IGS.col.HARD_LINE) -- outline
+	draw.RoundedBox(3,1,1,w - 2,h - 2,IGS.col.INNER_SELECTIONS) -- bg
 
 	return true
 end
