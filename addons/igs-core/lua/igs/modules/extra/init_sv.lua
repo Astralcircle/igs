@@ -91,25 +91,17 @@ end)
 ---------------------------------------------------------------------------]]
 
 hook.Add("IGS.PlayerDonate", "ThanksForDonate", function(pl, rub)
-	local score = pl.igs_score -- TODO: make netvar
-
-	IGS.Notify(pl, Format("Спасибо вам за пополнение счета. " ..
-		"Ваш новый Score на всех проектах - %d. " ..
-		"Что такое Score: vk.cc/caHTZi", score))
-
-	local rub_str  = PL_MONEY(rub)
-	local full_str = Format("%s пополнил счет на %s. Его новый Score: %s", pl:Nick(), rub_str, score)
-
-	IGS.NotifyAll(full_str)
+	IGS.Notify(pl, "Спасибо вам за пополнение счета")
+	IGS.NotifyAll(Format("%s пополнил счет на %s", pl:Nick(), PL_MONEY(rub)))
 end)
 
 hook.Add("IGS.PlayerPurchasesLoaded", "BalanceRemember", function(pl)
 	local balance = pl:IGSFunds()
+
 	if balance >= 10 then
 		timer.Simple(10, function()
 			if not IsValid(pl) then return end
 			IGS.Notify(pl, "Вы можете потратить " .. IGS.SignPrice(balance) .. " через /donate")
-			IGS.Notify(pl, "Ваш Score " .. (pl.igs_score or 0) .. ". Подробнее: vk.cc/caHTZi") -- or 0 на всякий случай
 		end)
 	end
 end)
