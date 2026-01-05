@@ -1,9 +1,5 @@
-list.Set("DesktopWindows", "IGS",{
-	title = "Автодонат",
-	icon  = "icon16/money_add.png",
-	init  = function()
+hook.Add("PlayerButtonDown", "IGS.UI", function(ply, button)
+	if button == IGS.C.MENUBUTTON then
 		IGS.UI()
 	end
-})
-
--- IGS.UI()
+end)
