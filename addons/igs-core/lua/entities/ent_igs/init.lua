@@ -65,8 +65,7 @@ end
 -- https://forum.gm-donate.net/t/spavn-donata-cherez-konsol/438/4?u=gmd
 function IGS.CreateGift(sUid, plOwner, vPos)
 	local ent = IGS.SpawnGift(sUid, vPos)
-	if ent.Setowning_ent then
-		ent:Setowning_ent(plOwner)
-	end
+	cleanup.Add(plOwner, "sents", ent)
+
 	return ent
 end
