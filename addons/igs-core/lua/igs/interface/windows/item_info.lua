@@ -27,7 +27,7 @@ local function purchase(ITEM, buy_button)
 			end
 
 			IGS.BoolRequest("Успешная покупка",
-				"Спасибо за покупку. Она находится в вашем /donate инвентаре.\n\nАктивировать ее сейчас?",
+				"Спасибо за покупку. Она находится в вашем !donate инвентаре.\n\nАктивировать ее сейчас?",
 			function(yes)
 				if not yes then return end
 

@@ -98,7 +98,7 @@ local function IGS_Purchase(pl, uid, cb)
 			end
 
 			if IGS.C.Inv_Enabled then
-				IGS.Notify(pl, "Ваша покупка находится в /donate инвентаре")
+				IGS.Notify(pl, "Ваша покупка находится в !donate инвентаре")
 			end
 
 			cb(id_or_err)
