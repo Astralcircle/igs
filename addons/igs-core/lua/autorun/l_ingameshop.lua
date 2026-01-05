@@ -121,27 +121,6 @@ function IGS.load_modules(sBasePath) -- igs/modules
 	iam_inside = nil
 end
 
-function IGS.load_entities()
-	log("Загрузка энтити")
-	local entities = findInMount("^entities/([^/]*)/(.*%.lua)$")
-	entities = unique(entities) -- {ent_igs, npc_igs}
-
-	for _, ent_class in ipairs(entities) do
-		iam_inside = "entities/" .. ent_class
-		ENT = {}
-		ENT.Folder = iam_inside
-
-		if SERVER then IGS.sv("init.lua")
-		else IGS.cl("cl_init.lua") end
-		scripted_ents.Register(ENT, ent_class)
-
-		iam_inside = nil
-
-		ENT = nil
-	end
-end
-
-
 concommand.Add("igs_flushversion", function(pl)
 	if IsValid(pl) then IGS.prints("console only") return end
 	cookie.Delete("igs_version")
@@ -157,4 +136,3 @@ if SERVER and igs_version:GetString() == "" then
 end
 
 IGS.sh("igs/launcher.lua")
-IGS.load_entities()

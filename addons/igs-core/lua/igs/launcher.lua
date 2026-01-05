@@ -14,7 +14,6 @@ sv("dependencies/stack.lua")
 sh("dependencies/scc.lua")
 sv("dependencies/resources.lua") -- иконки, моделька дропнутого итема
 sh("dependencies/bib.lua")
-sh("dependencies/permasents.lua")
 cl("dependencies/matex.lua")
 
 -- #todo сделать через require

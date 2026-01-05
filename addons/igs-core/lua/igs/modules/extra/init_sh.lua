@@ -16,11 +16,6 @@ scc.addClientside("IGSItem",    function(_, arg) IGS.WIN.Item(arg)    end)
 scc.addClientside("IGSDeposit", function(_, arg) IGS.WIN.Deposit(arg) end)
 scc.addClientside("IGSGroup",   function(_, arg) IGS.WIN.Group(arg)   end)
 
-
-
-
-IGS.PermaSaveFeature("npc_igs")
-
 local function runAfterhooks() -- #todo перенести эти выполнения в модули или вызывать локально if CODEMOUNT
 	if (not IGS_MOUNT) then return end
 
