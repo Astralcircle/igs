@@ -60,7 +60,7 @@ IGS.C.NotifyAboutNewItems = false
 -- Эта иконка будет отображена для предмета, если для него не будет установлена кастомная через :SetIcon()
 -- Отображается вот тут: https://img.qweqwe.ovh/1494088609445.png
 -- Хостинг картинок: https://t.me/cfr2bot
-IGS.C.DefaultIcon = "https://file.def.pm/42Hr9k9U.jpeg"
+IGS.C.DefaultIcon = "https://classicbox.myarena.site/content/classicboxicon.png"
 
 
 
