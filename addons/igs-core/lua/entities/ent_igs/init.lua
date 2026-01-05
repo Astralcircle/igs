@@ -2,17 +2,8 @@ IGS.sh("shared.lua")
 IGS.cl("cl_init.lua")
 
 function ENT:Initialize()
-	-- self:SetModel("models/props_junk/Shoe001a.mdl") -- ботинок
-	-- self:SetModel("models/christmas_gift2/christmas_gift2.mdl") -- подарок
-
-	self:SetModel(IGS_GIFT_MODEL or "models/dav0r/hoverball.mdl")
-	self:SetModelScale(1.5)
-	self:SetAngles(Angle(90, 0, 0))
-
+	self:SetModel("models/items/cs_gift.mdl")
 	self:PhysicsInit(SOLID_VPHYSICS)
-	self:SetMoveType(MOVETYPE_VPHYSICS)
-	self:SetSolid(SOLID_VPHYSICS)
-	self:SetUseType(SIMPLE_USE)
 	self:PhysWake()
 end
 
