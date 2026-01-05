@@ -57,11 +57,4 @@ if CLIENT then
 			return string.format(formathex, string.byte(c))
 		end), ' ', '+')
 	end
-
-	local surface_DrawRect     = surface.DrawRect
-	local surface_SetDrawColor = surface.SetDrawColor
-	function draw.Box(x, y, w, h, col)
-		surface_SetDrawColor(col)
-		surface_DrawRect(x, y, w, h)
-	end
 end

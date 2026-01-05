@@ -48,6 +48,8 @@ local function dep() IGS.WIN.Deposit() end
 
 
 local mf -- антидубликат
+local rndx = classicbox.rndx
+
 function IGS.UI()
 	if not IGS.IsLoaded() then
 		LocalPlayer():ChatPrint("[IGS] Автодонат не загружен")
@@ -114,7 +116,7 @@ function IGS.UI()
 		surface.DrawLine(0,0,0,h) -- линия слева
 	end
 	mf.sidebar.header.Paint = function(_,w,h)
-		draw.RoundedBox(0,0,0,w,h,IGS.col.FRAME_HEADER)
+		rndx.Draw(0, 0, 0, w, h, IGS.col.FRAME_HEADER)
 
 		surface.SetDrawColor(IGS.col.HARD_LINE)
 		surface.DrawLine(0,h - 1,w,h - 1)

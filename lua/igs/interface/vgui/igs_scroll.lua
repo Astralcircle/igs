@@ -71,7 +71,8 @@ end
 function SCROLLBAR:Paint(w, h)
 	if (self:GetParent().ShouldHideScrollbar) then return end
 
-	draw.Box(0, self.scrollButton.y, w, self.height, IGS.col.HIGHLIGHTING)
+	surface.SetDrawColor(IGS.col.HIGHLIGHTING)
+	surface.DrawRect(0, self.scrollButton.y, w, self.height)
 end
 
 function SCROLLBAR:OnMouseWheeled(delta)

@@ -1,5 +1,7 @@
 local PANEL = {}
 
+local rndx = classicbox.rndx
+
 function PANEL:Init()
 	self:SetTextColor(IGS.col.HIGHLIGHTING)
 	self:SetFont("igs.18")
@@ -21,10 +23,11 @@ function PANEL:IsActive()
 end
 
 function PANEL:Paint(w,h)
-	draw.RoundedBox(4,0,0,w,h,IGS.col.HIGHLIGHTING) -- outline
-
-	if not self.active then
-		draw.RoundedBox(4,1,1,w - 2,h - 2,IGS.col.PASSIVE_SELECTIONS) -- bg TODO изменить, сделав как-то прозрачным
+	if self.active then
+		rndx.Draw(4, 0, 0, w, h, IGS.col.HIGHLIGHTING)
+	else
+		rndx.Draw(4, 0, 0, w, h, IGS.col.PASSIVE_SELECTIONS)
+		rndx.DrawOutlined(4, 0, 0, w, h, IGS.col.HIGHLIGHTING, 1)
 	end
 end
 

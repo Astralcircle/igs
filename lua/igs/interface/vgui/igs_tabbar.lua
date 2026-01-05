@@ -1,5 +1,6 @@
 local PANEL = {}
 
+local rndx = classicbox.rndx
 local barTall = 50
 local btnWide = 70
 
@@ -104,7 +105,7 @@ function PANEL:PerformLayout()
 end
 
 function PANEL:Paint(w,h)
-	draw.RoundedBox(0,0,0,w,h,IGS.col.ACTIVITY_BG)
+	rndx.Draw(0, 0, 0, w, h, IGS.col.ACTIVITY_BG)
 end
 
 vgui.Register("igs_tabbar", PANEL, "Panel")
