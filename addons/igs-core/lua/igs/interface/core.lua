@@ -161,11 +161,6 @@ function IGS.UI()
 		end, self)
 	end
 
-	-- Немного не правильно, но эта штука отключает
-	for hook_name in pairs(IGS.C.DisabledFrames) do
-		hook.Remove("IGS.CatchActivities",hook_name)
-	end
-
 	-- Собираем кнопочки в футере
 	hook.Run("IGS.CatchActivities",mf.activity,mf.sidebar)
 
