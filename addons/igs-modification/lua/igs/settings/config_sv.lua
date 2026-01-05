@@ -1,8 +1,8 @@
 -- Вот так просто! :)
 
 -- ID проекта в системе
-IGS.C.ProjectID  = 0
+local project_id = CreateConVar("igs_project_id", "0", FCVAR_ARCHIVE + FCVAR_PROTECTED)
+local project_key = CreateConVar("igs_project_key", "", FCVAR_ARCHIVE + FCVAR_PROTECTED)
 
--- Секретный ключ проекта. Никому не сообщайте.
--- С этим ключом можно запрашивать и изменять данные ваших донатеров
-IGS.C.ProjectKey = ""
+IGS.C.ProjectID  = project_id:GetInt()
+IGS.C.ProjectKey = project_key:GetString()
