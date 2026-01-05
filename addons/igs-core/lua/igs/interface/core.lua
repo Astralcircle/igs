@@ -60,9 +60,6 @@ function IGS.UI()
 	end
 
 	if IsValid(mf) then
-		if not mf:IsVisible() then
-			IGS.ShowUI()
-		end
 		return
 	end
 
@@ -71,14 +68,6 @@ function IGS.UI()
 		self:SetSize(math.min(ScrW(), 800), math.min(ScrH(), 500)) -- позволяет закрыть окно на ущербных разрешениях
 		self:RememberLocation("igs")
 		self:MakePopup()
-
-		-- если повесить на фрейм, то драг сломается
-		local init = CurTime() -- https://t.me/c/1353676159/7185
-		function self.btnClose:Think()
-			if CurTime() - init > 1 and input.IsKeyDown(IGS.C.MENUBUTTON) then
-				IGS.HideUI()
-			end
-		end
 	end)
 
 	-- Баланс
@@ -174,28 +163,6 @@ end
 function IGS.CloseUI()
 	if IsValid(mf) then
 		mf:Close()
-	end
-end
-
-local lastX,lastY -- remember
-function IGS.HideUI()
-	if not mf.moving then
-		mf.moving = true
-		lastX,lastY = mf:GetPos()
-		mf:MoveTo(-mf:GetWide(), lastY, .2)
-		timer.Simple(.2, function()
-			mf:SetVisible(false)
-			mf.moving = false
-		end)
-	end
-end
-
-function IGS.ShowUI()
-	if not mf.moving then
-		mf.moving = true
-		mf:SetVisible(true)
-		mf:MoveTo(lastX, lastY, .2)
-		timer.Simple(.2, function() mf.moving = false end)
 	end
 end
 
