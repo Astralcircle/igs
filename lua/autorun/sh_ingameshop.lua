@@ -5,20 +5,6 @@
 ---------------------------------------------------------------------------]]
 IGS = IGS or {}
 
-local function log(patt, ...)
-	if cookie.GetNumber("igs_verbose", 0) == 1 then
-		print(string.format("[IGS] " .. patt, ...)) -- не менять на printS. Некоторые логи слишком ранние
-	end
-end
-
-concommand.Add("igs_verbose", function(pl)
-	if SERVER and IsValid(pl) then return end
-
-	local enable = cookie.GetNumber("igs_verbose", 0) == 0
-	cookie.Set("igs_verbose", enable and "1" or "0")
-	IGS.prints("IGS Logging " .. (enable and "enabled" or "disabled"))
-end)
-
 local i = {} -- lua files only
 i.sv = SERVER and include or function() end
 i.cl = SERVER and AddCSLuaFile or include
@@ -48,22 +34,8 @@ end
 local iam_inside
 
 local function incl(sRealm, sPath)
-	-- Не сработает, если например в лаунчере в sh() для файлов убрать приставку "igs/"
-	local isRelativePath = iam_inside and not sPath:StartWith(iam_inside)
-	local sAbsolutePath  = isRelativePath and iam_inside .. "/" .. sPath or sPath
-	-- /\ Мб внутри модуля уже указан full путь, а не относительный
-	-- (обычно путь к _main.lua)
-
-	-- print(sAbsolutePath)
-
-	if IGS_MOUNT and IGS_MOUNT[sAbsolutePath] then -- 1st check for lua load (not web)
-		log("%s Иклюд с MOUNT. Путь: %s", sRealm, sAbsolutePath)
-		return include_mount(sRealm, sAbsolutePath)
-	else
-		log("%s Иклюд с LUA. Путь: %s", sRealm, sAbsolutePath)
-		local fIncluder = i[sRealm]
-		return fIncluder(sAbsolutePath)
-	end
+	local fIncluder = i[sRealm]
+	return fIncluder(isRelativePath and iam_inside .. "/" .. sPath or sPath)
 end
 
 function IGS.sh(sPath) return incl("sh", sPath) end
@@ -119,20 +91,6 @@ function IGS.load_modules(sBasePath) -- igs/modules
 		IGS.sh(sModPath .. "/_main.lua") -- igs/modules/inv_log/_main.lua
 	end
 	iam_inside = nil
-end
-
-concommand.Add("igs_flushversion", function(pl)
-	if IsValid(pl) then IGS.prints("console only") return end
-	cookie.Delete("igs_version")
-	IGS.prints("OK. После перезагрузки сервер скачает новую версию")
-end)
-
--- Используется только для передачи версии клиенту. На сервере использовать cookie.GetString("igs_version")
-local igs_version = CreateConVar("igs_version", "", {FCVAR_NOTIFY, FCVAR_REPLICATED, FCVAR_SERVER_CAN_EXECUTE})
-
-if SERVER and igs_version:GetString() == "" then
-	local version = cookie.GetString("igs_version")
-	igs_version:SetString(version or "777") -- "or" for case when igsmod isn't ran (core hosted locally)
 end
 
 IGS.sh("igs/launcher.lua")

@@ -15,7 +15,7 @@ local function onReady()
 	dprint("Мы готовы. ", "Запускаем IGS 🚀")
 	IGS.SERVERS.Broadcast()
 	hook.Run("IGS.ServersLoaded")
-	IGS.SetServerVersion( cookie.GetString("igs_version", "123") )
+	IGS.SetServerVersion("777")
 end
 
 local function addServerLocally(id, serv_name, enabled)
