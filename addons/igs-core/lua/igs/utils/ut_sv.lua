@@ -1,22 +1,20 @@
 
-local col_lime  = Color(100,210,40)
-local col_light = Color(228,228,228)
+local col_lime  = Color(255,122,0)
 local col_red   = Color(250,30,90)
 
 function IGS.NotifyAll(...)
 	chat.AddTextSV(
-		col_lime, "[IGS]",
+		col_lime, "[CB]",
 		col_red,  " > ",
-		col_light,...
+		color_white,...
 	)
 end
 
-
 function IGS.Notify(pl, ...)
 	pl:ChatPrintColor(
-		col_lime, "[IGS]",
+		col_lime, "[CB]",
 		col_red,  " > ",
-		col_light,...
+		color_white,...
 	)
 end
 
