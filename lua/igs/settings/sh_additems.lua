@@ -37,7 +37,7 @@ CreateVIP("VIP на 60 дней", "vip_60", 60, 475, 500)
 CreateVIP("VIP на 90 дней", "vip_90", 90, 715, 750)
 
 if SERVER then
-	hook.Add("IGS.PlayerPurchasesLoaded", "ClassicVox_VIP", function(ply)
+	hook.Add("IGS.PlayerPurchasesLoaded", "ClassicBox_VIP", function(ply)
 		ply:SetNW2Bool("CB_VIP", IGS.PlayerHasOneOf(ply, vip_groups) and true or nil)
 	end, POST_HOOK)
 end
