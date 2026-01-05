@@ -1,14 +1,12 @@
 IGS.sh("shared.lua")
 
-local UPPER_TEXT = Color(255,255,255)
 local LOWER_TEXT = Color(20, 150, 200)
-local OUTLINE    = Color(0,0,0)
 
 local font = "igs.40"
 local function drawSide(pos,ang,t1,t2)
 	cam.Start3D2D(pos, ang, .1)
-		draw.SimpleTextOutlined(t1, font, 0, -385, UPPER_TEXT, TEXT_ALIGN_CENTER, nil, 1, OUTLINE)
-		draw.SimpleTextOutlined(t2, font, 0, -350, LOWER_TEXT, TEXT_ALIGN_CENTER, nil, 1, OUTLINE)
+		draw.SimpleTextOutlined(t1, font, 0, -385, color_white, TEXT_ALIGN_CENTER, nil, 1, color_black)
+		draw.SimpleTextOutlined(t2, font, 0, -350, LOWER_TEXT, TEXT_ALIGN_CENTER, nil, 1, color_black)
 	cam.End3D2D()
 end
 

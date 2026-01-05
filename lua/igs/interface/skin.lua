@@ -7,28 +7,28 @@
 IGS.S = IGS.S or {}
 
 IGS.S.COLORS = {
-	FRAME_HEADER        = Color(44,44,44), -- Фон верхушки фреймов в т.ч. пополнения счета и т.д. https://img.qweqwe.ovh/1491950958825.png
-	ACTIVITY_BG         = Color(44,44,44), -- Фон в каждой вкладке (основной) https://img.qweqwe.ovh/1509370647204.png
-	TAB_BAR             = Color(44,44,44), -- Фон таб бара https://img.qweqwe.ovh/1509370669492.png
+	FRAME_HEADER        = classicbox.enums.color_base, -- Фон верхушки фреймов в т.ч. пополнения счета и т.д. https://img.qweqwe.ovh/1491950958825.png
+	ACTIVITY_BG         = classicbox.enums.color_base, -- Фон в каждой вкладке (основной) https://img.qweqwe.ovh/1509370647204.png
+	TAB_BAR             = classicbox.enums.color_base, -- Фон таб бара https://img.qweqwe.ovh/1509370669492.png
 
-	PASSIVE_SELECTIONS  = Color(66,66,66), -- Фон панели тегов, цвет кнопки с балансом, верхушки таблиц, не выделенные кнопки https://img.qweqwe.ovh/1509370720597.png
-	INNER_SELECTIONS    = Color(66,66,66), -- Фон иконок на плашках, фон панелек последних покупок... https://img.qweqwe.ovh/1509370766148.png
+	PASSIVE_SELECTIONS  = classicbox.enums.color_scoreboard, -- Фон панели тегов, цвет кнопки с балансом, верхушки таблиц, не выделенные кнопки https://img.qweqwe.ovh/1509370720597.png
+	INNER_SELECTIONS    = classicbox.enums.color_scoreboard, -- Фон иконок на плашках, фон панелек последних покупок... https://img.qweqwe.ovh/1509370766148.png
 
-	SOFT_LINE           = Color(0,0,0), -- Линия между секциями, типа "Информация" и "Описание" в инфе об итеме
-	HARD_LINE           = Color(0,0,0), -- Обводки панелей
+	SOFT_LINE           = color_black, -- Линия между секциями, типа "Информация" и "Описание" в инфе об итеме
+	HARD_LINE           = color_black, -- Обводки панелей
 
 	HIGHLIGHTING        = Color(255,122,0),   -- Обводка кнопок, цвет текста не активной кнопки
 	HIGHLIGHT_INACTIVE  = Color(160,160,160), -- Цвет иконки неактивной кнопки таббара, мигающая иконка на фрейме помощи https://img.qweqwe.ovh/1509371884592.png
 
-	TEXT_HARD           = Color(255,255,255),       -- Заголовки, выделяющиеся тексты https://img.qweqwe.ovh/1509372019687.png
+	TEXT_HARD           = color_white,       -- Заголовки, выделяющиеся тексты https://img.qweqwe.ovh/1509372019687.png
 	TEXT_SOFT           = Color(200,200,200), -- Описания, значения чего-то
-	TEXT_ON_HIGHLIGHT   = Color(255,255,255), -- Цвет текста на выделенных кнопках
+	TEXT_ON_HIGHLIGHT   = color_white, -- Цвет текста на выделенных кнопках
 
 	LOG_SUCCESS         = Color(76,217,100),  -- В логах пополнения цвет успешных операций
 	LOG_ERROR           = Color(220,30,70),   -- В логах пополнения цвет ошибок
-	LOG_NORMAL          = Color(255,255,255),       -- В логах пополнения обычные записи
+	LOG_NORMAL          = color_white,       -- В логах пополнения обычные записи
 
-	ICON                = Color(255,255,255), -- цвет иконок на плашечках
+	ICON                = color_white, -- цвет иконок на плашечках
 }
 
 -- Вариант раскраски от Павел Тумачев (vk.com/id240371602)
