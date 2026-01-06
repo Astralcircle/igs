@@ -11,11 +11,6 @@ function STORE_ITEM:SetMaxGlobalPurchases(iMax)
 			if self.user_icon == nil then -- чтобы про луа рефреше не стало true
 				self.user_icon = tobool(self.icon) -- bool вместо ссылки. Нужен, чтобы не оверрайдить юзерские иконки
 			end
-			if not self.user_icon then
-				local left = iMax - purchased
-				local icon = left <= 0 and " 0 " or left -- потому что 0 сайт не пережевывает
-				self:SetIcon("https://via.placeholder.com/90x90.png?text=" .. icon)
-			end
 
 			if purchased >= iMax then
 				self:SetHidden()

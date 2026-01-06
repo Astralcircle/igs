@@ -32,7 +32,6 @@ end
 -- Добавляет иконку рядом с названием инфо панели
 function PANEL:SetIcon(sIco, sMode) -- url or Model path
 	local bIsModel = sMode == true or sMode == "model"
-	local bIsMaterial = sMode == "material"
 
 	self.icon_bg = self.icon_bg or uigs.Create("Panel", function(bg)
 		bg.Paint = IGS.S.RoundedPanel
@@ -67,10 +66,8 @@ function PANEL:SetIcon(sIco, sMode) -- url or Model path
 
 	if bIsModel then
 		self.icon:SetModel(sIco)
-	elseif bIsMaterial then
-		self.icon:SetMaterial(sIco)
 	else
-		self.icon:SetURL(sIco) -- nil = сброс
+		self.icon:SetMaterial(sIco)
 	end
 end
 
@@ -143,10 +140,6 @@ function PANEL:Reset()
 	if self.sub then
 		self.sub:SetText("")
 	end
-
-	if self.icon then
-		self.icon:SetURL() -- IGS.C.DefaultIcon
-	end
 end
 
 
@@ -215,14 +208,14 @@ function PANEL:SetInfo(tInf)
 end
 
 -- Добавляет панель с указанным изображением
-function PANEL:SetImage(sUrl)
-	if not sUrl then return end
+function PANEL:SetImage(sMaterial)
+	if not sMaterial then return end
 
 	self:InvalidateParent(true) -- self:GetWide()
 
 	local pnl = uigs.Create("igs_wmat")
 	pnl:SetSize(self:GetWide(),self:GetWide() / 5 * 2) -- соотношение 5:2
-	pnl:SetURL(sUrl)
+	pnl:SetMaterial(sMaterial)
 
 	self:AddPanel("Изображение",pnl)
 end

@@ -5,7 +5,7 @@ local function CreateVIP(printname, classname, time, price, discountfrom)
 	vip:SetTerm(time)
 	vip:SetPrice(price)
 	vip:SetDiscountedFrom(discountfrom)
-	vip:SetIcon("icons/fa32/user-plus.png", "material")
+	vip:SetIcon("icons/fa32/user-plus.png")
 	vip:SetCategory("Группы")
 	vip:SetDescription([[
 	Дает эксклюзивные возможности на сервере:
