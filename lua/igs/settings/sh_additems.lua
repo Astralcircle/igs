@@ -34,7 +34,7 @@ end
 
 CreateVIP("VIP на 30 дней", "vip_30", 30, 250)
 CreateVIP("VIP на 60 дней", "vip_60", 60, 475, 500)
-CreateVIP("VIP на 90 дней", "vip_90", 90, 715, 750)
+CreateVIP("VIP на 90 дней", "vip_90", 90, 675, 750)
 
 if SERVER then
 	local steamid_checks = {}
