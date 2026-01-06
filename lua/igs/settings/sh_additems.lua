@@ -1,4 +1,4 @@
-local vip_groups = {}
+IGS.VIPGroups = {}
 
 local function CreateVIP(printname, classname, time, price, discountfrom)
 	local vip = IGS(printname, classname)
@@ -24,12 +24,12 @@ local function CreateVIP(printname, classname, time, price, discountfrom)
 	end)
 
 	vip:SetCanActivate(function(ply)
-		if IGS.PlayerHasOneOf(ply, vip_groups) then
+		if IGS.PlayerHasOneOf(ply, IGS.VIPGroups) then
 			return "У вас уже действует эта услуга"
 		end
 	end)
 
-	table.insert(vip_groups, vip)
+	table.insert(IGS.VIPGroups, vip)
 end
 
 CreateVIP("VIP на 30 дней", "vip_30", 30, 250)
@@ -64,6 +64,6 @@ if SERVER then
 	end)
 
 	hook.Add("IGS.PlayerPurchasesLoaded", "ClassicBox_VIP", function(ply)
-		ply:SetNW2Bool("CB_VIP", IGS.PlayerHasOneOf(ply, vip_groups) and true or nil)
+		ply:SetNW2Bool("CB_VIP", IGS.PlayerHasOneOf(ply, IGS.VIPGroups) and true or nil)
 	end)
 end
