@@ -6,7 +6,6 @@ function basepanel:Paint(w, h)
 	cbdraw.SimpleText("Автодонат временно недоступен", w / 2, h / 2, color_white, "CBFont", "CBFont_Shadow", 3, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 end
 
--- Very hacky way to support our donate menu in our menu
 timer.Simple(0, function()
 	if basepanel:IsValid() then
 		local parent = basepanel:GetParent()
@@ -24,10 +23,7 @@ timer.Simple(0, function()
 
 						function donate:Close()
 							cbmenu:SetVisible(true)
-
-							local x, y = self:GetX() + (self:GetWide() - cbmenu:GetWide()) / 2, self:GetY() + (self:GetTall() - cbmenu:GetTall()) / 2
-							cbmenu:SetPos(math.Clamp(x, 0, ScrW() - cbmenu:GetWide()), math.Clamp(y, 0, ScrH() - cbmenu:GetTall()))
-
+							cbmenu:SetPos(self:GetPos())
 							self:Remove()
 						end
 					else

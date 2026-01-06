@@ -19,7 +19,7 @@ local function loadTab(activity,sidebar,dat)
 	local infpan = uigs.Create("igs_iteminfo", function(p)
 		-- p:SetSize(300,act_tall) -- \/
 		-- p:SetPos(0,0)
-		p:Dock(LEFT) p:SetWide(300)
+		p:Dock(LEFT) p:SetWide(200)
 		p:SetIcon(IGS.C.DefaultIcon)
 		p:SetName("")
 		p:SetDescription("Здесь будет отображена информация о вашей покупке, когда вы ее сделаете")

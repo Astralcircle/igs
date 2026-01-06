@@ -39,11 +39,11 @@ function IGS.UI(x, y, w, h)
 
 	local mf = uigs.Create("igs_frame", function(self)
 		-- 580 = (items_in_line * item_pan_wide) + (10(margin) * (items_in_line + 1))
-		self:SetSize(math.max(w, 800), math.max(h, 500)) -- позволяет закрыть окно на ущербных разрешениях
+		self:SetSize(w, h) -- позволяет закрыть окно на ущербных разрешениях
 		self:MakePopup()
 
-		if x and y and w and h then
-			self:SetPos(x + (w - self:GetWide()) / 2, y + (h - self:GetTall()) / 2)
+		if x and y then
+			self:SetPos(x, y)
 		else
 			self:Center()
 		end
@@ -79,7 +79,7 @@ function IGS.UI(x, y, w, h)
 
 	mf.activity = uigs.Create("igs_tabbar", function(self)
 		self:SetPos(0,mf:GetTitleHeight())
-		self:SetSize(580,mf:GetTall() - mf:GetTitleHeight())
+		self:SetSize(math.max(w / 1.5, 380),mf:GetTall() - mf:GetTitleHeight())
 	end, mf)
 
 	-- Херня справа от лэйаута с услугами http://joxi.ru/52aQQ8Efzov120
