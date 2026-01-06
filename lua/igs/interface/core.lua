@@ -45,31 +45,29 @@ hook.Add("IGS.Initialized","SupressDarkRPF1",f1) -- git загрузка
 
 -- чтобы аргументом не передалась панель
 local function dep() IGS.WIN.Deposit() end
-
-
-local mf -- антидубликат
 local rndx = classicbox.rndx
 
-function IGS.UI()
+function IGS.UI(x, y, w, h)
 	if not IGS.IsLoaded() then
-		LocalPlayer():ChatPrint("[IGS] Автодонат не загружен")
+		LocalPlayer():ChatPrint("[CB] Автодонат не загружен")
 		return
 	end
 
-	if not IGS.C then -- Проблема AddCSLua. В консоли клиента должны быть ошибки инклюда нескольких базовых файлов
-		LocalPlayer():ChatPrint("[IGS] Автодонат установлен неправильно. Сообщите администрации")
+	if not IGS.C then
+		LocalPlayer():ChatPrint("[CB] Автодонат установлен неправильно. Сообщите администрации")
 		return
 	end
 
-	if IsValid(mf) then
-		return
-	end
-
-	mf = uigs.Create("igs_frame", function(self)
+	local mf = uigs.Create("igs_frame", function(self)
 		-- 580 = (items_in_line * item_pan_wide) + (10(margin) * (items_in_line + 1))
 		self:SetSize(math.min(ScrW(), 800), math.min(ScrH(), 500)) -- позволяет закрыть окно на ущербных разрешениях
 		self:MakePopup()
-		self:Center()
+
+		if x and y and w and h then
+			self:SetPos(x + (w - self:GetWide()) / 2, y + (h - self:GetTall()) / 2)
+		else
+			self:Center()
+		end
 	end)
 
 	-- Баланс
@@ -158,26 +156,6 @@ function IGS.UI()
 	return mf
 end
 
-function IGS.GetUI()
-	return IsValid(mf) and mf or nil
-end
-
-function IGS.CloseUI()
-	if IsValid(mf) then
-		mf:Close()
-	end
-end
-
-function IGS.OpenUITab(sName)
-	local iui = IGS.GetUI() or IGS.UI()
-
-	for _,btn in ipairs(iui.activity.Buttons) do
-		if btn:Name() == sName then
-			btn:DoClick()
-		end
-	end
-end
-
 -- Добавляет блок текста к скролл панели. К обычной не вижу смысла
 -- scroll Должен иметь статический размер. Никаких доков!
 -- Сетка: https://img.qweqwe.ovh/1487023074990.png
@@ -230,11 +208,3 @@ function IGS.AddButton(pScroll,sName,fDoClick) -- используется в и
 		pan:SetTall(pan.button:GetTall() + 5)
 	end))
 end
-
--- IGS.UI()
-
--- timer.Create("IGSUI",30,1,function()
--- 	if IsValid(mf) then
--- 		mf:Close()
--- 	end
--- end)

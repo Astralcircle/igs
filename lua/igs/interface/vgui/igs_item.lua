@@ -272,6 +272,3 @@ end
 
 
 vgui.Register("igs_item",PANEL,"DButton")
-
--- IGS.CloseUI()
--- IGS.UI()
