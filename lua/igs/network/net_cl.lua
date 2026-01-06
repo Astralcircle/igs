@@ -67,7 +67,7 @@ function IGS.GetLatestPurchases(fCallback)
 		return
 	end
 
-	net.Start("IGS.GetInventory")
+	net.Start("IGS.GetLatestPurchases")
 	net.SendToServer()
 
 	net.Receive("IGS.GetLatestPurchases",function()
@@ -85,7 +85,7 @@ end
 
 -- тут таймаут не нужно. Даже если заспамить net - ничего не произойдет
 function IGS.GetMyTransactions(fCallback)
-	net.Start("IGS.GetInventory")
+	net.Start("IGS.GetMyTransactions")
 	net.SendToServer()
 
 	net.Receive("IGS.GetMyTransactions",function()
@@ -99,7 +99,7 @@ function IGS.GetMyTransactions(fCallback)
 end
 
 function IGS.GetMyPurchases(fCallback)
-	net.Start("IGS.GetInventory")
+	net.Start("IGS.GetMyPurchases")
 	net.SendToServer()
 
 	net.Receive("IGS.GetMyPurchases",function()
