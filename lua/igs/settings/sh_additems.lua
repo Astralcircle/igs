@@ -65,5 +65,5 @@ if SERVER then
 
 	hook.Add("IGS.PlayerPurchasesLoaded", "ClassicBox_VIP", function(ply)
 		ply:SetNW2Bool("CB_VIP", IGS.PlayerHasOneOf(ply, vip_groups) and true or nil)
-	end, POST_HOOK)
+	end)
 end
