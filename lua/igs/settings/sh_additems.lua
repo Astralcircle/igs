@@ -45,7 +45,7 @@ if SERVER then
 				if steamid_checks[steamid] == nil then
 					steamid_checks[steamid] = false
 
-					timer.Simple(60, function()
+					timer.Simple(30, function()
 						steamid_checks[steamid] = nil
 					end)
 
