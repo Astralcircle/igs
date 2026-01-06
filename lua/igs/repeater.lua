@@ -69,7 +69,6 @@ hook.Add("IGS.OnApiError", "repeater", function(sMethod, error_uid, tParams, fOn
 
 		-- Был burst запросов и хук вызвался дважды
 		if not timer.Exists("IGS_REPEATER") then
-			IGS.dprint(Color(250, 50, 50), "Ошибка выполнения запроса: ", error_uid, ". Запущен репитер")
 			timer.Create("IGS_REPEATER", 10, 1, function() R:ProcessNextQuery() end)
 		end
 	else

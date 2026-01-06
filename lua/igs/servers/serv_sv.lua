@@ -2,17 +2,10 @@ local function getHostPort()
 	return tonumber( game.GetIPAddress():match(":(.+)$") )
 end
 
-local function dprint(...)
-	if IGS.DEBUG and IGS.DEBUG <= 2 then -- debug, info, [warning, error]
-		IGS.dprint("🐛 ", "", ...)
-	end
-end
-
 -- После вызова этой функции загружается вторая часть скрипта
 -- Т.е. не вызвать функцию - не запустится скрипт
 -- Она не вызывается, если сервер отключен или произошла ошибка в ходе выполнения запроса на получение списка серверов
 local function onReady()
-	dprint("Мы готовы. ", "Запускаем IGS 🚀")
 	IGS.SERVERS.Broadcast()
 	hook.Run("IGS.ServersLoaded")
 	IGS.SetServerVersion("777")
@@ -63,14 +56,10 @@ local function loadServersOrRegisterCurrent(d, local_ip)
 		if v.IP == local_ip and v.Port == serv_port then
 			if disabled then isCurrentDisabled = true end
 			addCurrentServerLocally(v.ID, v.Name)
-			dprint("📍 ВКЛ: ", (disabled and "❌" or "✅"), " ID: ", v.ID, ". Название: ", v.Name)
 		else
 			addServerLocally(v.ID, v.Name, not disabled)
-			dprint("📤 ВКЛ: ", (disabled and "❌" or "✅"), " ID: ", v.ID, ". Название: ", v.Name)
 		end
 	end
-
-	dprint("ID самого младшего сервера: ", maxVisibleServerId)
 
 	-- limit 50
 	if maxVisibleServerId > 40 then
@@ -108,15 +97,12 @@ end
 
 
 local function getAndLoadServers(local_ip)
-	dprint("Наш IP: ", local_ip, ". Получаем список серверов проекта")
 	IGS.GetServers(function(dat)
-		dprint("Получили данные ", #dat, " сервера(ов). Сохраняем в ОЗУ")
 		loadServersOrRegisterCurrent(dat, local_ip)
 	end, true) -- include disabled
 end
 
 timer.Simple(0, function() -- фетч заработает только так в этот момент
-	dprint("Загрузка серверов")
 	IGS.GetExternalIP(getAndLoadServers)
 end)
 

@@ -1,12 +1,3 @@
--- #todo нужно переделывать, но только так:
--- https://trello.com/c/WfVYTIOF/544 (комменты)
-CreateConVar("igs_debug", "0", FCVAR_NOTIFY)
-cvars.AddChangeCallback("igs_debug", function(_, old, new)
-	IGS.DEBUG = tonumber(new) -- level. 0: disabled, 1: debug, 2: info, 3: warning, 4: error
-	if IGS.DEBUG == 0 then IGS.DEBUG = nil end
-	IGS.prints("PEZuM OTJIA9Ku ", (IGS.DEBUG and "AKTuBuPOBAH" or "BbIKJII04EH"), ". Level: ", (IGS.DEBUG or 0))
-end, "main")
-
 --- @class Player
 local PLAYER = FindMetaTable("Player")
 
@@ -170,13 +161,6 @@ function IGS.print(...)
 	args[#args] = args[#args] .. "\n"
 	MsgC(Color(50,200,255), "[IGS] ", unpack(args))
 end
-
-function IGS.dprint(...)
-	if IGS.DEBUG then
-		IGS.prints(...)
-	end
-end
-
 
 function IGS.SignPrice(iPrice) -- 10 Alc
 	return math.Truncate(tonumber(iPrice) or -1, 2) .. " " .. IGS.C.CURRENCY_SIGN

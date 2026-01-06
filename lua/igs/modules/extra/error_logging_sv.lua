@@ -18,5 +18,4 @@ hook.Add("IGS.OnApiError", "LogError", function(sMethod, error_uid, tParams)
 		split .. "\n\n\n"
 
 	file.Append("igs_errors.txt",err_log)
-	IGS.dprint(Color(250, 50, 50), err_log)
 end)
