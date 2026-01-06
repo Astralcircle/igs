@@ -4,18 +4,10 @@ hook.Add("IGS.OnApiError", "LogError", function(sMethod, error_uid, tParams)
 	end
 
 	local sparams = "\n"
-	for k,v in pairs(tParams) do
+
+	for k, v in pairs(tParams) do
 		sparams = sparams .. ("\t%s = %s\n"):format(k,v)
 	end
 
-	local split = string.rep("-",50)
-	local err_log =
-		os.date("%Y-%m-%d %H:%M\n") ..
-		split ..
-		"\nMethod: " .. sMethod ..
-		"\nError: "  .. error_uid ..
-		"\nParams: " .. sparams ..
-		split .. "\n\n\n"
-
-	file.Append("igs_errors.txt",err_log)
+	ErrorNoHaltWithStack(string.format("IGS API Error:\nMethod: %s\nError: %s\nParams: %s", sMethod, error_uid, sparams))
 end)
