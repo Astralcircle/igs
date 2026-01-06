@@ -378,5 +378,6 @@ end)
 function IGS.UI(pl)
 	if checkNotReady(pl) then return end
 
-	net.Ping("IGS.UI",pl)
+	net.Start("IGS.UI")
+	net.Send(pl)
 end

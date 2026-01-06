@@ -18,7 +18,7 @@ sh("dependencies/bib.lua")
 sh("dependencies/dash/nw.lua")
 
 -- if not dash then
-sh("dependencies/dash/misc.lua")
+cl("dependencies/dash/misc.lua")
 
 sh("settings/config_sh.lua")
 sv("settings/config_sv.lua") -- для фетча project key (Генерация подписи)

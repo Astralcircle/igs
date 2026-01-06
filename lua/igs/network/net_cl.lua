@@ -67,7 +67,9 @@ function IGS.GetLatestPurchases(fCallback)
 		return
 	end
 
-	net.Ping("IGS.GetLatestPurchases")
+	net.Start("IGS.GetInventory")
+	net.SendToServer()
+
 	net.Receive("IGS.GetLatestPurchases",function()
 		local dat = {}
 		for i = 1,net.ReadUInt(IGS.BIT_LATEST_PURCH) do
@@ -83,7 +85,8 @@ end
 
 -- тут таймаут не нужно. Даже если заспамить net - ничего не произойдет
 function IGS.GetMyTransactions(fCallback)
-	net.Ping("IGS.GetMyTransactions")
+	net.Start("IGS.GetInventory")
+	net.SendToServer()
 
 	net.Receive("IGS.GetMyTransactions",function()
 		local dat = {}
@@ -96,7 +99,8 @@ function IGS.GetMyTransactions(fCallback)
 end
 
 function IGS.GetMyPurchases(fCallback)
-	net.Ping("IGS.GetMyPurchases")
+	net.Start("IGS.GetInventory")
+	net.SendToServer()
 
 	net.Receive("IGS.GetMyPurchases",function()
 		local dat = {}
@@ -115,7 +119,8 @@ end
 	Инвентарь
 ---------------------------------------------------------------------------]]
 function IGS.GetInventory(fCallback)
-	net.Ping("IGS.GetInventory")
+	net.Start("IGS.GetInventory")
+	net.SendToServer()
 
 	net.Receive("IGS.GetInventory",function()
 		local d = {}
