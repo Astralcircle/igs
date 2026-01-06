@@ -14,13 +14,6 @@ sv("dependencies/stack.lua")
 sv("dependencies/resources.lua") -- иконки, моделька дропнутого итема
 sh("dependencies/bib.lua")
 
--- #todo сделать через require
--- lua/includes/modules отсюда
--- уберет костыль внутри kupol
--- +при фетче оверрайд require
-sh("dependencies/lolib.lua") -- должна быть перед kupol
--- sh("dependencies/kupol.lua") -- решил поставлять с модулем
-
 -- Антиконфликт с https://trello.com/c/3ti6xIjW/
 sh("dependencies/dash/nw.lua")
 

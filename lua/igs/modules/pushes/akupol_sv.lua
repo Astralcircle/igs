@@ -1,34 +1,9 @@
--- 2021.01.18 4:16
--- Polling client for poll.gmod.app
--- Docs: https://blog.amd-nick.me/poll-gmod-app-docs
--- Author: amd-nick.me/about
-
--- 2 copy of this file in some cases in different places with different include methods
-if not lolib then require("lolib") end
--- require bib
-
-kupol = kupol or {
-	log = lolib.new()
-}
-
-
-local log = kupol.log
-log.setCvar("kupol_logging_level")
-
-log.format = function(fmt, ...)
-	fmt = fmt:gsub("{}", "%%s") -- обратная совместимость
-	return os.date("%H:%M:%S ") .. fmt:format(...):gsub("(app/..)[%w_]*(../)", "%1*****%2")
-end
-
-local safestr = function(str) -- hide uid from logZ
-	return str:gsub("(..)[%w_]*(..)", "%1*****%2")
-end
+kupol = kupol or {}
 
 local function get_updates(base_url, uid, sleep, ts, fOnResponse)
 	local url = base_url .. uid .. "/getUpdates?sleep=" .. (sleep or "") .. "&ts=" .. (ts or "")
-	log.debug("kupol http.Fetch({})", url)
+
 	http.Fetch(url, function(json)
-		log.debug("kupol body: {}", json)
 		local t = util.JSONToTable(json)
 		if t and t.ok then
 			fOnResponse(t)
@@ -39,7 +14,6 @@ local function get_updates(base_url, uid, sleep, ts, fOnResponse)
 		fOnResponse(false, http_err)
 	end)
 end
-
 
 function kupol.new(sUrl, uid, iTimeout)
 	local o = {uid = uid, url = sUrl, timeout = iTimeout, handler = false, running = false, stopping = false}
@@ -55,17 +29,8 @@ function kupol.new(sUrl, uid, iTimeout)
 		local b = #res.updates == 0 and requested_ts > remote_ts -- переход с dev на prod, где ts больше
 
 		if a or b then
-			local log_pattern = a and "ts сервера ({}) меньше локального ({})"
-				or "Похоже, что на сервере произошел баг или сервер изменился. ts {} prev {}"
-
-			log.warning(log_pattern, remote_ts, requested_ts)
 			bib.setNum("lp:ts:" .. o.uid, remote_ts)
 			requested_ts = remote_ts
-		end
-
-		local ts_diff = remote_ts - requested_ts
-		if #res.updates > 0 then
-			log.debug("From uid {} received {} new messages. Ts diff: {} items", safestr(o.uid), #res.updates, ts_diff)
 		end
 
 		for _,upd in ipairs(res.updates) do
@@ -74,15 +39,11 @@ function kupol.new(sUrl, uid, iTimeout)
 			local i = bib.getNum("lp:ts:" .. o.uid, 0) + 1
 			bib.setNum("lp:ts:" .. o.uid, i) -- increment
 
-			local _, err = pcall(o.handler, upd)
-			if err then
-				log.error("Внутри хендлера произошла ошибка и работа чуть не прекратилась: {}", err)
-			end
+			pcall(o.handler, upd)
 		end
 
 		-- https://t.me/c/1353676159/43747
-		if ts_diff > #res.updates then
-			log.warning("Апдейты долго не запрашивались и {} шт утеряно", ts_diff - #res.updates)
+		if remote_ts - requested_ts > #res.updates then
 			bib.setNum("lp:ts:" .. o.uid, remote_ts)
 		end
 	end
@@ -90,7 +51,6 @@ function kupol.new(sUrl, uid, iTimeout)
 	o.consume_updates = function()
 		local previous_ts = bib.getNum("lp:ts:" .. o.uid) or 0
 
-		-- log.info("Polling uid: {}. Timeout {} sec. Requested Ts {}", safestr(uid), sleep, previous_ts)
 		o.poll(previous_ts, function(res, err)
 			if o.checkStopping() then return end
 
@@ -99,7 +59,6 @@ function kupol.new(sUrl, uid, iTimeout)
 				o.consume_updates()
 
 			else
-				log.error("Error: {}. Waiting 5 sec and retrying", err)
 				timer.Simple(5, o.consume_updates)
 			end
 		end)
