@@ -9,7 +9,6 @@ surface.CreateFont("igs.18", {font = "roboto", extended = true, size = 18, weigh
 surface.CreateFont("igs.17", {font = "roboto", extended = true, size = 15, weight = 550})
 surface.CreateFont("igs.15", {font = "roboto", extended = true, size = 15, weight = 550})
 
-
 uigs = uigs or {}
 function uigs.Create(t, f, p)
 	local cb, parent = f, p
@@ -22,26 +21,6 @@ function uigs.Create(t, f, p)
 	if cb then cb(v, parent) end
 	return v
 end
--- uigs.Create("name")
--- uigs.Create("name", parent)
--- uigs.Create("name", func, parent)
--- uigs.Create("name", func)
-
-local function f1()
-	local GM = GM or GAMEMODE
-	if GM and IGS.C.MENUBUTTON == KEY_F1 then
-		function GM:ShowHelp() end
-	end
-end
-
--- Чтобы не открывало F1 менюшку даркрпшевскую ебучую
-hook.Add("DarkRPFinishedLoading","SupressDarkRPF1",f1) -- с addons
-hook.Add("IGS.Initialized","SupressDarkRPF1",f1) -- git загрузка
-
-
-
-
-
 
 -- чтобы аргументом не передалась панель
 local function dep() IGS.WIN.Deposit() end
