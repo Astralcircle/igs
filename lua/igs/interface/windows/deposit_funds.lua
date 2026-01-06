@@ -14,7 +14,6 @@ function IGS.WIN.Deposit(iRealSum)
 
 	m = uigs.Create("igs_frame", function(self)
 		self:SetSize(450,400)
-		self:RememberLocation("igs_deposit")
 
 		-- Вы, конечно, можете удалить наш копирайт. Чтобы вы не перенапряглись, я даже подготовил чуть ниже строчку для этого
 		-- Но прежде, чем ты это сделаешь, ответь себе на вопрос. Зачем? Так мешает?
@@ -22,8 +21,7 @@ function IGS.WIN.Deposit(iRealSum)
 		-- self:SetTitle("Владелец этого сервера не ценит чужой труд")
 
 		self:MakePopup()
-		-- self:Focus()
-		-- self:SetBackgroundBlur(false)
+		self:Center()
 
 		--[[-------------------------------------
 			Левая колонка. Реальная валюта

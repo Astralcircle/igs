@@ -49,7 +49,6 @@ function IGS.WIN.Group(sGroupUID)
 
 		-- or: https://t.me/c/1353676159/21116
 		bg:SetSize((cellW or 220) * 1.3, 300)
-		bg:RememberLocation("igs_group")
 	end)
 end
 -- IGS.UI()

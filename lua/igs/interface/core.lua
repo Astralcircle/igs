@@ -68,8 +68,8 @@ function IGS.UI()
 	mf = uigs.Create("igs_frame", function(self)
 		-- 580 = (items_in_line * item_pan_wide) + (10(margin) * (items_in_line + 1))
 		self:SetSize(math.min(ScrW(), 800), math.min(ScrH(), 500)) -- позволяет закрыть окно на ущербных разрешениях
-		self:RememberLocation("igs")
 		self:MakePopup()
+		self:Center()
 	end)
 
 	-- Баланс

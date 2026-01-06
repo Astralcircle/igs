@@ -80,9 +80,9 @@ function IGS.WIN.Item(uid)
 
 	m = uigs.Create("igs_frame", function(self)
 		self:SetSize(330,550)
-		self:RememberLocation("igs_item")
 		self:MakePopup()
 		self:SetTitle(ITEM:Name())
+		self:Center()
 
 		self.item_uid  = uid -- для предотвращения повторного открытия двух одинаковых фреймов
 	end)

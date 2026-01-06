@@ -22,37 +22,6 @@ function PANEL:Init()
 	self.lblTitle:SetFont("igs.20")
 end
 
-local locations = {}
-function PANEL:SaveLocation(panel_uid)
-	locations[panel_uid] = {self:GetPos()}
-end
-
-function PANEL:RestoreLocation(panel_uid)
-	if locations[panel_uid] then
-		local x,y = unpack(locations[panel_uid])
-		self:SetPos(
-			math.Clamp(x,0,ScrW() - 10),
-			math.Clamp(y,0,ScrH() - 10)
-		) -- на случай, если уменьшат разрешение, чтобы не исчезло у краев
-		locations[panel_uid] = nil
-	else
-		self:Center()
-	end
-end
-
-function PANEL:RememberLocation(panel_uid)
-	self.remember_uid = panel_uid
-end
-
-
-function PANEL:Close(...)
-	surface.PlaySound("ambient/water/rain_drip3.wav")
-	self.BaseClass.Close(self, ...)
-	if self.remember_uid then
-		self:SaveLocation(self.remember_uid)
-	end
-end
-
 function PANEL:GetTitleHeight()
 	return 24 -- close button H
 end
@@ -94,11 +63,6 @@ end
 function PANEL:PerformLayout()
 	self.lblTitle:SizeToContents()
 	self.btnClose:SetPos(self:GetWide() - 30, 0)
-
-	if self.remember_uid and not self.restored then
-		self.restored = true
-		self:RestoreLocation(self.remember_uid)
-	end
 end
 
 vgui.Register("igs_frame",PANEL,"DFrame")
