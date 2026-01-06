@@ -158,12 +158,6 @@ function IGS.UI()
 	return mf
 end
 
-hook.Add("PlayerButtonDown", "IGS.UI", function(ply, button)
-	if button == IGS.C.MENUBUTTON then
-		IGS.UI()
-	end
-end)
-
 function IGS.GetUI()
 	return IsValid(mf) and mf or nil
 end
