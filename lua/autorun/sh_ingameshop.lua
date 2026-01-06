@@ -88,7 +88,7 @@ function IGS.load_modules(sBasePath) -- igs/modules
 	for _, mod in ipairs(data_modules) do
 		local sModPath = sBasePath .. "/" .. mod
 		iam_inside = sModPath
-		IGS.sh(sModPath .. "/_main.lua") -- igs/modules/inv_log/_main.lua
+		IGS.sh(sModPath .. "/_main.lua")
 	end
 	iam_inside = nil
 end
