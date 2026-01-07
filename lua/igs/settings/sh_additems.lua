@@ -40,7 +40,7 @@ if SERVER then
 	local steamid_checks = {}
 
 	hook.Add("CheckPassword", "ClassicBox_VIPReservedSlots", function(steamid, ip, server_password, client_password, nick)
-		if player.GetCount() >= game.MaxPlayers() - 2 then
+		if player.GetCount() + player.GetCountConnecting() >= game.MaxPlayers() - 2 then
 			if not steamid_checks[steamid] then
 				if steamid_checks[steamid] == nil then
 					steamid_checks[steamid] = false
