@@ -1,5 +1,11 @@
 IGS.VIPGroups = {}
 
+local PLAYER = FindMetaTable("Player")
+
+function PLAYER:HasVIP()
+	return self:GetNW2Bool("CB_VIP")
+end
+
 local function CreateVIP(printname, classname, time, price, discountfrom)
 	local vip = IGS(printname, classname)
 	vip:SetTerm(time)
