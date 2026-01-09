@@ -140,35 +140,9 @@ function IGS.prints(...)
 	MsgC(Color(50, 200, 255), "[IGS] ", unpack(output))
 end
 
--- Результат выполнения: https://file.def.pm/Jw9E7j7a.jpg
--- IGS.prints("одиночный текст базового (белого) цвета")
--- IGS.prints(nil, Color(255, 50, 50), "одиночный выделенным кастомным цветом текст")
--- IGS.prints(Color(255, 50, 50), "", "одиночный выделенным кастомным цветом текст") -- аналогичный вариант верхней записи
--- IGS.prints(Color(255, 50, 50), "обычный, ", "выделение кастомым цветом")
--- IGS.prints("обычный, ", "выделенный, ", "обычный, ", "выделенный")
--- IGS.prints("", "выделенный, ", "обычный, ", "выделенный, ", "обычный")
--- IGS.prints(Color(150, 150, 150), "обычный, ", "выделенный цветной, ", "обычный, ", "выделенный")
--- IGS.prints(Color(150, 150, 150), Color(255, 50, 50), "обычный, но красный, ", "выделенный серый, ", "красный, ", "серый")
--- IGS.prints(nil, Color(255, 50, 50), "обычный, но красный, ", "выделенный стандарт, ", "обычный, ", "выделенный")
-
--- #deprecated 01.09.2024, not used
-function IGS.print(...)
-	local args = {...}
-	if not IsColor(args[1]) then
-		table.insert(args,1,color_white)
-	end
-
-	args[#args] = args[#args] .. "\n"
-	MsgC(Color(50,200,255), "[IGS] ", unpack(args))
-end
-
 function IGS.SignPrice(iPrice) -- 10 Alc
 	return math.Truncate(tonumber(iPrice) or -1, 2) .. " " .. IGS.C.CURRENCY_SIGN
 end
 
 PL_MONEY = PLUR(IGS.C.CurrencyPlurals)
 PL_DAYS  = PLUR({"день", "дня", "дней"})
-
--- #TODO: ОБРАТНАЯ СОВМЕСТИМОСТЬ. НЕ применяется в core.
--- https://forum.gm-donate.net/t/cryptos-igs/1461/6
-PL_IGS = PL_MONEY
