@@ -1,0 +1,1 @@
+E2Helper.Descriptions["hasVIP(e:)"] = "Returns 1 if the player has VIP, 0 otherwise"
