@@ -19,3 +19,7 @@ function IGS.ProcessActivate(dbID, cb)
 		end
 	end)
 end
+
+net.Receive("IGS.Notify", function()
+	chat.AddText(Color(255, 122, 0), "[CB]", Color(250, 30, 90), " > ", color_white, net.ReadString())
+end)

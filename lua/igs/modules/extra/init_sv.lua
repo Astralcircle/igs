@@ -1,10 +1,10 @@
 hook.Add("IGS.PlayerPurchasedItem", "IGS.BroadcastPurchase", function(pl, ITEM)
-	IGS.NotifyAll(pl:Nick() .. " купил " .. ITEM:Name())
+	IGS.Notify(nil, pl:Nick() .. " купил " .. ITEM:Name())
 end)
 
 hook.Add("IGS.PlayerDonate", "ThanksForDonate", function(pl, rub)
 	IGS.Notify(pl, "Спасибо вам за пополнение счета")
-	IGS.NotifyAll(Format("%s пополнил счет на %s", pl:Nick(), PL_MONEY(rub)))
+	IGS.Notify(nil, Format("%s пополнил счет на %s", pl:Nick(), PL_MONEY(rub)))
 end)
 
 hook.Add("IGS.PlayerPurchasesLoaded", "BalanceRemember", function(ply)

@@ -77,7 +77,7 @@ hook.Add("IGS.IncomingMessage","DisableServer",function(d, method)
 		endl = " на " .. IGS.SERVERS(d.Server)
 	end
 
-	IGS.NotifyAll("Автодонат временно отключен" .. endl)
+	IGS.Notify(nil, "Автодонат временно отключен" .. endl)
 end)
 
 -- nomr

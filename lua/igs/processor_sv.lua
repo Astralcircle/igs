@@ -6,7 +6,7 @@ local function giveLvlBonuses(pl, from_lvl, to_lvl)
 			lvl.bonus(pl)
 		end
 
-		IGS.NotifyAll(pl:Name() .. " получил новый (" .. i .. ") бизнес уровень - " .. lvl:Name())
+		IGS.Notify(nil, pl:Name() .. " получил новый (" .. i .. ") бизнес уровень - " .. lvl:Name())
 	end
 end
 

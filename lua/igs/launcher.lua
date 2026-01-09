@@ -9,7 +9,6 @@ local function mods(path) return IGS.load_modules("igs/" .. path) end
 
 
 sh("dependencies/plurals.lua")
-sh("dependencies/chatprint.lua")
 sv("dependencies/stack.lua")
 sv("dependencies/resources.lua") -- иконки, моделька дропнутого итема
 sh("dependencies/bib.lua")

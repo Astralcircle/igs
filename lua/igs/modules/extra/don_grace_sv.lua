@@ -91,7 +91,7 @@ local function charge(pl, sum)
 		:gsub("$nick",pl:Nick())
 		:gsub("$sum",sum)
 
-		IGS.NotifyAll(s)
+		IGS.Notify(nil, s)
 
 		setHugeCharge(sum,pl:SteamID64(),pl:Nick())
 	end
