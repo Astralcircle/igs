@@ -23,7 +23,7 @@ function IGS.GetPlayerTransactionsBypassingLimit(cb, s64, am_, _tmp_)
 		end
 
 		if #data < 255 then cb(_tmp_)
-		else getTxsNoLimit(cb, s64, am_, _tmp_)
+		else IGS.GetPlayerTransactionsBypassingLimit(cb, s64, am_, _tmp_)
 		end
 	end, s64, true, math.min(255, left), #_tmp_)
 end
