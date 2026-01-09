@@ -18,19 +18,6 @@ function IGS.Notify(pl, ...)
 	)
 end
 
--- IGS.MUTE_NOTIFY = IGS.MUTE_NOTIFY or {}
--- function IGS.NotifyOpt(pl, uid, ...)
--- 	if IGS.MUTE_NOTIFY[uid] then return end
--- 	return IGS.Notify(pl, ...)
--- end
-
-
--- todo реальный логгинг
-function IGS.LogError(err)
-	error(err)
-end
-
-
 --[[---------------------------
 	API
 -----------------------------]]
