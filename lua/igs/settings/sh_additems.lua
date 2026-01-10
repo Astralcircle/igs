@@ -37,10 +37,10 @@ CreateVIP("VIP на 60 дней", "vip_60", 60, 525, 550)
 CreateVIP("VIP на 90 дней", "vip_90", 90, 750, 825)
 
 if SERVER then
-	RunConsoleCommand("sv_visiblemaxplayers", tostring(game.MaxPlayers() - 1))
+	RunConsoleCommand("sv_visiblemaxplayers", tostring(game.MaxPlayers() - 2))
 
 	hook.Add("CheckPassword", "ClassicBox_VIPReservedSlots", function(steamid, ip, server_password, client_password, nick)
-		if player.GetCount() + player.GetCountConnecting() >= game.MaxPlayers() - 1 then
+		if player.GetCount() + player.GetCountConnecting() >= game.MaxPlayers() - 2 then
 			IGS.GetPlayerPurchases(steamid, function(data)
 				for _, item in ipairs(data) do
 					if item.Item == "vip_30" or item.Item == "vip_60" or item.Item == "vip_90" then
