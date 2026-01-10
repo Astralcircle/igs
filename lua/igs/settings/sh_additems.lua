@@ -13,6 +13,7 @@ local function CreateVIP(printname, classname, time, price, discountfrom)
 	Увеличенные вдвое лимиты на спавны
 	Возможность спавнить запрещенное оружие и NPC
 	Возможность установить пользовательский анимированный фон своему профилю в ТАБ-е
+	Доступ к зарезервированному слоту на сервере
 	Доступ к Starfall и PAC3 до 10 часов
 
 	Список будет пополнятся]]
@@ -36,6 +37,14 @@ CreateVIP("VIP на 60 дней", "vip_60", 60, 525, 550)
 CreateVIP("VIP на 90 дней", "vip_90", 90, 750, 825)
 
 if SERVER then
+	RunConsoleCommand("sv_visiblemaxplayers", tostring(game.MaxPlayers() - 1))
+
+	hook.Add("PlayerAuthed", "ClassicBox_VIPReservedSlots", function(ply, steamid, uniqueid)
+		if player.GetCount() >= game.MaxPlayers() - 1 and not IGS.PlayerHasOneOf(ply, IGS.VIPGroups) then
+			game.KickID(steamid, "Server is full")
+		end
+	end)
+
 	hook.Add("IGS.PlayerPurchasesLoaded", "ClassicBox_VIP", function(ply)
 		ply:SetNW2Bool("CB_VIP", IGS.PlayerHasOneOf(ply, IGS.VIPGroups) and true or nil)
 	end)
