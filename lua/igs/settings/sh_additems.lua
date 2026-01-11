@@ -38,18 +38,28 @@ CreateVIP("VIP на 90 дней", "vip_90", 90, 750, 825)
 
 if SERVER then
 	RunConsoleCommand("sv_visiblemaxplayers", tostring(game.MaxPlayers() - 2))
+	local steamid_checks = {}
 
 	hook.Add("CheckPassword", "ClassicBox_VIPReservedSlots", function(steamid, ip, server_password, client_password, nick)
-		if player.GetCount() + player.GetCountConnecting() >= game.MaxPlayers() - 2 then
-			IGS.GetPlayerPurchases(steamid, function(data)
-				for _, item in ipairs(data) do
-					if item.Item == "vip_30" or item.Item == "vip_60" or item.Item == "vip_90" then
-						return
-					end
-				end
+		if player.GetCount() + player.GetCountConnecting() >= game.MaxPlayers() - 2 and not steamid_checks[steamid] then
+			if steamid_checks[steamid] == nil then
+				steamid_checks[steamid] = false
 
-				game.KickID(steamid, "Зарезервированный слот для VIP, простите")
-			end)
+				timer.Simple(30, function()
+					steamid_checks[steamid] = nil
+				end)
+
+				IGS.GetPlayerPurchases(steamid, function(data)
+					for _, item in ipairs(data) do
+						if item.Item == "vip_30" or item.Item == "vip_60" or item.Item == "vip_90" then
+							steamid_checks[steamid] = true
+							break
+						end
+					end
+				end)
+			end
+
+			return false, "Зарезервированные два слота, простите\nЕсли вы VIP, то переподключитесь через пару секунд чтобы занять его"
 		end
 	end)
 
