@@ -10,7 +10,7 @@ end)
 hook.Add("IGS.PlayerPurchasesLoaded", "BalanceRemember", function(ply)
 	local balance = ply:IGSFunds()
 
-	if balance >= 10 then
+	if balance >= 275 then
 		timer.Simple(10, function()
 			if not IsValid(ply) then return end
 			IGS.Notify(ply, "Вы можете потратить " .. IGS.SignPrice(balance) .. " через !donate")
