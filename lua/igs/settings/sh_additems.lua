@@ -68,3 +68,20 @@ if SERVER then
 		ply:SetNW2Bool("CB_VIP", IGS.PlayerHasOneOf(ply, IGS.VIPGroups) and true or nil)
 	end)
 end
+
+local function CreatePoints(printname, classname, count, price, discountfrom)
+	local points = IGS(printname, classname)
+	points:SetPrice(price)
+	points:SetDiscountedFrom(discountfrom)
+	points:SetIcon("icons/fa32/usd.png")
+	points:SetCategory("Поинты")
+	points:SetDescription("Выдает вам " .. count .. " поинтов")
+
+	points:SetOnActivate(function(ply)
+		ply:AddPoints(count)
+	end)
+end
+
+CreatePoints("250 поинтов", "points_250", 250, 150)
+CreatePoints("500 поинтов", "points_500", 500, 275, 300)
+CreatePoints("750 поинтов", "points_750", 750, 400, 450)
