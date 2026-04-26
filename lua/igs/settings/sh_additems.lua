@@ -20,6 +20,12 @@ local function CreateVIP(printname, classname, time, price, discountfrom)
 	Список будет пополнятся]]
 	)
 
+	if time == -1 then
+		vip:SetPerma()
+	else
+		vip:SetTerm(time)
+	end
+
 	vip:SetOnActivate(function(ply)
 		ply:SetNW2Bool("CB_VIP", true)
 	end)
@@ -35,7 +41,7 @@ end
 
 CreateVIP("VIP на 30 дней", "vip_30", 30, 275)
 CreateVIP("VIP на 60 дней", "vip_60", 60, 525, 550)
-CreateVIP("VIP на 90 дней", "vip_90", 90, 750, 825)
+CreateVIP("VIP навсегда", "vip", -1, 750, 825)
 
 if SERVER then
 	RunConsoleCommand("sv_visiblemaxplayers", tostring(game.MaxPlayers() - 2))
