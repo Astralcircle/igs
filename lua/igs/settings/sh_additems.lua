@@ -90,4 +90,4 @@ end
 
 CreatePoints("250 поинтов", "points_250", 250, 125)
 CreatePoints("500 поинтов", "points_500", 500, 200, 250)
-CreatePoints("1000 поинтов", "points_750", 1000, 325, 375)
+CreatePoints("1000 поинтов", "points_750", 1000, 400, 500)
