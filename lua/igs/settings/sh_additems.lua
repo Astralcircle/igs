@@ -39,9 +39,9 @@ local function CreateVIP(printname, classname, time, price, discountfrom)
 	table.insert(IGS.VIPGroups, vip)
 end
 
-CreateVIP("VIP на 30 дней", "vip_30", 30, 275)
-CreateVIP("VIP на 60 дней", "vip_60", 60, 525, 550)
-CreateVIP("VIP навсегда", "vip", -1, 750, 825)
+CreateVIP("VIP на 30 дней", "vip_30", 30, 250)
+CreateVIP("VIP на 60 дней", "vip_60", 60, 450, 500)
+CreateVIP("VIP навсегда", "vip", -1, 650, 750)
 
 if SERVER then
 	RunConsoleCommand("sv_visiblemaxplayers", tostring(game.MaxPlayers() - 2))
@@ -88,6 +88,6 @@ local function CreatePoints(printname, classname, count, price, discountfrom)
 	end)
 end
 
-CreatePoints("250 поинтов", "points_250", 250, 150)
-CreatePoints("500 поинтов", "points_500", 500, 275, 300)
-CreatePoints("750 поинтов", "points_750", 750, 400, 450)
+CreatePoints("250 поинтов", "points_250", 250, 125)
+CreatePoints("500 поинтов", "points_500", 500, 200, 250)
+CreatePoints("1000 поинтов", "points_750", 1000, 325, 375)
