@@ -61,7 +61,7 @@ if SERVER then
 
 				IGS.GetPlayerPurchases(steamid, function(data)
 					for _, item in ipairs(data) do
-						if item.Item == "vip_30" or item.Item == "vip_60" or item.Item == "vip_90" then
+						if item.Item == "vip_30" or item.Item == "vip_60" or item.Item == "vip" then
 							steamid_checks[steamid] = true
 							break
 						end
