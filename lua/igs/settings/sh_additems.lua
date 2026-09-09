@@ -81,6 +81,7 @@ end
 local function CreatePoints(printname, classname, count, price, discountfrom)
 	local points = IGS(printname, classname)
 	points:SetPrice(price)
+	points:SetStackable()
 	points:SetDiscountedFrom(discountfrom)
 	points:SetIcon("icons/fa32/usd.png")
 	points:SetCategory("Поинты")
