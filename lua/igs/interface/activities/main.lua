@@ -2,7 +2,7 @@ local null = function() end
 local etoGlavnayaVkladkaBlya = true
 
 hook.Add("IGS.CatchActivities","main",function(activity,sidebar)
-	-- Зона прокрутки последних покупок http://joxi.ru/12MQQBlfzPnw2J
+	-- Зона прокрутки последних покупок http://joxi.ru/12MQQBlfzPCBJ
 	local bg = sidebar:AddPage("Последние покупки")
 
 	-- Панель тегов и готовая кнопка сброса фильтров

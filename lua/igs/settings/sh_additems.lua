@@ -30,7 +30,7 @@ local function CreateVIP(printname, classname, time, price, discountfrom)
 	end
 
 	vip:SetOnActivate(function(ply)
-		ply:SetNW2Bool("CB_VIP", true)
+		ply:SetCBBool("CB_VIP", true)
 	end)
 
 	vip:SetCanActivate(function(ply)
@@ -74,7 +74,7 @@ if SERVER then
 	end)
 
 	hook.Add("IGS.PlayerPurchasesLoaded", "ClassicBox_VIP", function(ply)
-		ply:SetNW2Bool("CB_VIP", IGS.PlayerHasOneOf(ply, IGS.VIPGroups) and true or nil)
+		ply:SetCBBool("CB_VIP", IGS.PlayerHasOneOf(ply, IGS.VIPGroups) and true or nil)
 	end)
 end
 

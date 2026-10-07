@@ -10,7 +10,7 @@ end)
 -- @shared
 -- @return boolean True if player has VIP
 function player_methods:hasVIP()
-	return getply(self):GetNW2Bool("CB_VIP")
+	return getply(self):GetCBBool("CB_VIP")
 end
 
 end
